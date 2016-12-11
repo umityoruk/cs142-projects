@@ -1,0 +1,17 @@
+<!--Replaced this with the Angular template for states component of CS142 Project #4
+    Problem #2.-->
+<div>
+	<h1>CS142 Problem #2 - States</h1>
+	<p>Enter a substring and we will return the states that has the entered string in their names. If the string does not appear in any states, we will write a message letting you know. Are you ready? Let's begin!</p>
+	<label>Enter a string: <input type="text" ng-model="states.substring"></label>
+	<div class="cs142-states-warning" ng-if="states.statesList.length === 0">
+		<p>There are no states containing substring "{{states.substring}}".</p>
+	</div>
+	<div class="cs142-states-outputbox" ng-if="states.statesList.length > 0"> 
+		Here are the states containing substring "{{states.substring}}":
+		<ul>
+			<li ng-repeat="x in states.statesList">{{x}}</li>
+		</ul>
+	</div>
+
+</div>

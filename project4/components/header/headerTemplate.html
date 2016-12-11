@@ -1,0 +1,19 @@
+<div id="cs142-header" back-img={{header.bgPath}} ng-style="{color: header.color}">
+	<div id="cs142-header-titles">
+		<h1 id="cs142-header-title">Welcome to CS142 Project #4</h1>
+		<h3 id="cs142-header-subtitle">by {{header.fullname}}</h3>
+		<label>
+			Author: 
+			<input type="text" ng-model="header.firstname">
+			<input type="text" ng-model="header.lastname">
+		</label>
+	</div>
+	<div id="cs142-header-info">
+		<div>Date: {{header.dateStr}}</div>
+		<div>Time: {{header.timeStr}}</div>
+		<div id="cs142-header-info-buttons">
+			<button ng-click="header.addHours(-1)">-1hr</button>
+			<button ng-click="header.addHours(+1)">+1hr</button>
+		</div>
+	</div>
+</div>

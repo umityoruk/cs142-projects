@@ -1,0 +1,39 @@
+.boxes {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.boxes > div {
+	flex: 0 0 auto;
+	width: 100px;
+	height: 100px;
+	background-color: #dfe1e7;
+	border-top-color: #687291;
+	border-top-width: 1px;
+	border-top-style: solid;
+	font: 40px Tahoma;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.boxes > div:nth-child(even) {
+	background-color: #eeeff2;
+}
+
+#lastbox {
+	background-color: #687291;
+	border: 4px black solid;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 100px;
+}

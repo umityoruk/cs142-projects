@@ -1,0 +1,31 @@
+.boxes {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.boxes > div {
+	flex: 0 0 auto;
+	width: 100px;
+	height: 150px;
+	background-color: #eeeff2;
+	border-left-color: #d0d0ff;
+	border-left-width: 10px;
+	border-left-style: dotted;
+	font: 40px Tahoma;
+	margin: 10px;
+	padding: 10px;
+}
+
+.boxes > div:hover {
+	background-color: yellow;
+	color: goldenrod;
+	cursor: pointer;
+}
+
+#lastbox {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 0px;
+}
