@@ -1,0 +1,30 @@
+.cs142-ud-box {
+	padding-left: 10px;
+}
+
+.cs142-ud-header > .cs142-ud-name {
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.cs142-ud-header > .cs142-ud-location {
+	margin-top: 0px;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	color: gray;
+	font-style: italic;
+}
+
+.cs142-ud-detail {
+	display: flex;
+	flex-direction: row;
+}
+
+.cs142-ud-detail > .cs142-ud-detail-name {
+	font-weight: bold;
+	padding-right: 5px;
+}
+
+.cs142-ud-photolink {
+	margin-top: 10px;
+}
