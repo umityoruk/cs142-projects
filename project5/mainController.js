@@ -46,7 +46,7 @@ cs142App.controller('MainController', ['$scope',
         $scope.FetchModel = function(url, doneCallback) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
+                if (this.readyState === 4 && this.status === 200) {
                     doneCallback(JSON.parse(this.responseText));
                 }
             };
@@ -62,7 +62,7 @@ cs142App.controller('MainController', ['$scope',
             $scope.$apply(function () {
                 $scope.main.versionNumber = info.__v; 
             });
-        }
+        };
 
         $scope.main.getVersionNumber();
     }]);

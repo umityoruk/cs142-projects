@@ -28,7 +28,7 @@ cs142App.controller('UserPhotosController', ['$scope', '$routeParams',
           $scope.main.toolbarTitle = "Photo Album";
         }
       });
-    }
+    };
 
     $scope.userPhotos.getUserPhotos = function (userId) {
       $scope.FetchModel('/photosOfUser/' + userId, $scope.userPhotos.processUserPhotos);
