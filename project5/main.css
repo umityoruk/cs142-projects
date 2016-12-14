@@ -17,3 +17,17 @@ cs142-main- here.
 .cs142-main-version {
 	font-size: 12px;
 }
+
+.cs142-main-buttonandtitle {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	min-height: 1%;
+}
+
+.md-button {
+	display: flex;
+	align-items: center;
+	min-width: 1%;
+	min-height: 1%;
+}

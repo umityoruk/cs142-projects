@@ -22,8 +22,8 @@ cs142App.config(['$routeProvider',
             });
     }]);
 
-cs142App.controller('MainController', ['$scope',
-    function ($scope) {
+cs142App.controller('MainController', ['$scope', '$mdSidenav', 
+    function ($scope, $mdSidenav) {
         $scope.main = {};
         $scope.main.title = 'Users';
         $scope.main.makePossessive = function (name) {
@@ -33,6 +33,10 @@ cs142App.controller('MainController', ['$scope',
                 }
                 return name + "'s";
             }
+        };
+
+        $scope.toggleUserList = function () {
+            $mdSidenav("users").toggle();
         };
 
         /*

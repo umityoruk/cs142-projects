@@ -26,15 +26,22 @@
         <link rel="stylesheet" type="text/css" href="components/user-photos/user-photos.css" />
 
         <script src="modelData/photoApp.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body layout="column">
 
         <md-toolbar layout="row">
             <div class="cs142-main-toolbar">
-                <div>
-                    <div>Umit Yoruk</div>
-                    <div class="cs142-main-version">Version: {{main.versionNumber}}</div>
+                <div class="cs142-main-buttonandtitle">
+                    <md-button hide-gt-sm ng-click="toggleUserList()">
+                        <div class="material-icons">menu</div>
+                    </md-button>
+                    <div>
+                        <div>Umit Yoruk</div>
+                        <div class="cs142-main-version">Version: {{main.versionNumber}}</div>
+                    </div>
                 </div>
                 <div>{{main.toolbarTitle}}</div>
             </div>
@@ -42,7 +49,7 @@
 
         <div class="container" flex layout="row">
 
-            <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+            <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="users" ng-click="toggleUserList()" class="md-whiteframe-z2">
                 <div ng-include="'components/user-list/user-listTemplate.html'" ng-controller="UserListController"></div>
             </md-sidenav>
 
