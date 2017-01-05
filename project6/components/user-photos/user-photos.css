@@ -1,0 +1,31 @@
+.cs142-up-photo {
+	border: 3px black none;
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #efefef;
+}
+
+.cs142-up-comments {
+	background-color: #d9d9d9;
+	padding-bottom: 10px;
+}
+
+.cs142-up-comment {
+	border: 3px black none;
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: #caebf2;
+}
+
+.cs142-up-comment-info {
+	display: flex;
+	flex-direction: row;
+	font-style: italic;
+	justify-content: space-between;
+}
+
+.cs142-up-img {
+	width: 100%;
+	height: auto;
+}

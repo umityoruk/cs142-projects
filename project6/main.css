@@ -1,0 +1,33 @@
+/*
+CSS for the CS142 project #5 main page
+
+Since CSS uses a global name space for classes we should use class names starting with
+cs142-main- here.
+*/
+
+.cs142-main-toolbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 10px;
+}
+
+.cs142-main-version {
+	font-size: 12px;
+}
+
+.cs142-main-buttonandtitle {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	min-height: 1%;
+}
+
+.md-button {
+	display: flex;
+	align-items: center;
+	min-width: 1%;
+	min-height: 1%;
+}

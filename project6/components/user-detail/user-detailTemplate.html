@@ -1,0 +1,22 @@
+<div class="cs142-ud-box">
+	<div class="cs142-ud-header">
+		<h1 class="cs142-ud-name">{{userDetail.fullName}}</h1>
+		<div class="cs142-ud-location">{{userDetail.userData.location}}</div>
+	</div>
+
+	<div class="cs142-ud-detail">
+		<div class="cs142-ud-detail-name">Occupation: </div>
+		<div class="cs142-ud-detail-value">{{userDetail.userData.occupation}}</div>
+	</div>
+
+	<div class="cs142-ud-detail">
+		<div class="cs142-ud-detail-name">Description: </div>
+		<div class="cs142-ud-detail-value">{{userDetail.userData.description}}</div>
+	</div>
+
+	<div class="cs142-ud-photolink">
+		<a href="{{'#!/photos/' + userDetail.userData._id}}">
+			See {{userDetail.first_name_possessive}} Photo Album
+		</a>
+	</div>
+</div>

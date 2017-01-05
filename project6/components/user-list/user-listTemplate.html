@@ -1,0 +1,8 @@
+<div class="cs142-ul-box">
+	<h3 class="cs142-ul-header">Users</h3>
+	<div ng-repeat="userData in userList.users">
+		<a href="{{'#!/users/' + userData._id}}">
+			{{userData.first_name + " " + userData.last_name}}
+		</a>
+	</div>
+</div>

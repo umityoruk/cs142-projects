@@ -1,0 +1,20 @@
+<div ng-repeat="photo in userPhotos.photos" class="cs142-up-photo">
+	<img ng-src="{{'/images/' + photo.file_name}}" class="cs142-up-img">
+	<div>Created: {{photo.date_time}}</div>
+	<div ng-if="photo.comments" class="cs142-up-comments">
+		<div class="cs142-up-comments-title">Comments:</div>
+		<div ng-repeat="comment in photo.comments" class="cs142-up-comment"> 
+			<div class="cs142-up-comment-info">
+				<div class="cs142-up-_comment-username">
+					<a href="{{'#!/users/' + comment.user._id}}">
+						{{comment.user.first_name + " " + comment.user.last_name}}
+					</a> said
+				</div>
+				<div class="cs142-up-comment-date">
+					{{comment.date_time}}
+				</div>
+			</div>
+			<div class="cs142-up-comment-text">{{comment.comment}}</div>
+		</div>
+	</div>
+</div>
