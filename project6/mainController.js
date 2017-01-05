@@ -1,6 +1,6 @@
 'use strict';
 
-var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial']);
+var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial', 'ngResource']);
 
 cs142App.config(['$routeProvider',
     function ($routeProvider) {
@@ -22,8 +22,8 @@ cs142App.config(['$routeProvider',
             });
     }]);
 
-cs142App.controller('MainController', ['$scope', '$mdSidenav', 
-    function ($scope, $mdSidenav) {
+cs142App.controller('MainController', ['$scope', '$mdSidenav', '$resource', 
+    function ($scope, $mdSidenav, $resource) {
         $scope.main = {};
         $scope.main.title = 'Users';
         $scope.main.makePossessive = function (name) {
@@ -59,12 +59,9 @@ cs142App.controller('MainController', ['$scope', '$mdSidenav',
         };
 
         $scope.main.getVersionNumber = function () {
-            $scope.FetchModel('/test/info', $scope.main.processVersionNumber);
-        };
-
-        $scope.main.processVersionNumber = function (info) {
-            $scope.$apply(function () {
-                $scope.main.versionNumber = info.__v; 
+            var infoResource = $resource('/test/info');
+            var info = infoResource.get({}, function() {
+                $scope.main.versionNumber = info.__v;
             });
         };
 

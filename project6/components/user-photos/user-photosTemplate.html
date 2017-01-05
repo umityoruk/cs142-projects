@@ -1,7 +1,7 @@
 <div ng-repeat="photo in userPhotos.photos" class="cs142-up-photo">
 	<img ng-src="{{'/images/' + photo.file_name}}" class="cs142-up-img">
 	<div>Created: {{photo.date_time}}</div>
-	<div ng-if="photo.comments" class="cs142-up-comments">
+	<div ng-if="photo.comments.length > 0" class="cs142-up-comments">
 		<div class="cs142-up-comments-title">Comments:</div>
 		<div ng-repeat="comment in photo.comments" class="cs142-up-comment"> 
 			<div class="cs142-up-comment-info">

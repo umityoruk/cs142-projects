@@ -1,19 +1,15 @@
 'use strict';
 
-cs142App.controller('UserListController', ['$scope',
-    function ($scope) {
-    	console.log('window.cs142models.userListModel()', window.cs142models.userListModel());
+cs142App.controller('UserListController', ['$scope', '$resource',
+    function ($scope, $resource) {
         $scope.main.title = 'Users';
         $scope.userList = {};
 
         $scope.userList.getUserList = function () {
-        	$scope.FetchModel('/user/list', $scope.userList.processUserList);
-        };
-
-        $scope.userList.processUserList = function (userList) {
-        	$scope.$apply(function () {
-        		$scope.userList.users = userList;
-        	});
+            var userListResource = $resource('/user/list');
+            var users = userListResource.query({}, function () {
+                $scope.userList.users = users;
+            });
         };
 
         $scope.userList.getUserList();

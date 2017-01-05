@@ -100,7 +100,7 @@ app.get('/test/:p1', function (request, response) {
             if (info.length === 0) {
                 // Query didn't return an error but didn't find the SchemaInfo object - This
                 // is also an internal error return.
-                response.status(500).send('Missing SchemaInfo');
+                response.status(400).send('Missing SchemaInfo');
                 return;
             }
 
@@ -144,14 +144,22 @@ app.get('/test/:p1', function (request, response) {
  * URL /user/list - Return all the User object.
  */
 app.get('/user/list', function (request, response) {
-    User.find({}, function (err, userList) {
+    User.find({}, function (err, queryResults) {
         if (err) {
             response.status(500).send(JSON.stringify(err));
             return;
         }
-        response.status(200).send(JSON.parse(JSON.stringify(userList)));
+        var userListFromDB = JSON.parse(JSON.stringify(queryResults))
+        var userList = [];
+        userListFromDB.forEach(function (userFromDB) {
+            var user = {};
+            user._id = userFromDB._id;
+            user.first_name = userFromDB.first_name;
+            user.last_name = userFromDB.last_name;
+            userList.push(user);
+        })
+        response.status(200).send(userList);
     });
-    //response.status(200).send(cs142models.userListModel());
 });
 
 /*
@@ -161,7 +169,7 @@ app.get('/user/:id', function (request, response) {
     var id = request.params.id;
     User.find({'_id': id}, function(err, queryResults) {
         if (err) {
-            response.status(500).send(JSON.stringify(err));
+            response.status(400).send(JSON.stringify(err));
             return;
         }
         if (queryResults.length === 0) {
@@ -169,7 +177,15 @@ app.get('/user/:id', function (request, response) {
             response.status(400).send('Not found');
             return;
         }
-        response.status(200).send(JSON.parse(JSON.stringify(queryResults[0])));
+        var userFromDB = JSON.parse(JSON.stringify(queryResults[0]))
+        var user = {};
+        user._id = userFromDB._id;
+        user.first_name = userFromDB.first_name;
+        user.last_name = userFromDB.last_name;
+        user.location = userFromDB.location;
+        user.description = userFromDB.description;
+        user.occupation = userFromDB.occupation;
+        response.status(200).send(user);
     });
     //var user = cs142models.userModel(id);
     //if (user === null) {
@@ -187,7 +203,7 @@ app.get('/photosOfUser/:id', function (request, response) {
     var id = request.params.id;
     Photo.find({'user_id': id}, function(err, queryResults) {
         if (err) {
-            response.status(500).send(JSON.stringify(err));
+            response.status(400).send(JSON.stringify(err));
             return;
         }
         if (queryResults.length === 0) {
@@ -199,24 +215,38 @@ app.get('/photosOfUser/:id', function (request, response) {
         var asyncTasks = [];
         var photos = JSON.parse(JSON.stringify(queryResults));
         for (var i=0; i < photos.length; i++) {
-            var photo = photos[i];
-            photo.date_time = formatDateTime(photo.date_time);
+            var photoFromDB = photos[i];
+            var photo = {}
+            photos[i] = photo;
+            photo._id = photoFromDB._id;
+            photo.date_time = formatDateTime(photoFromDB.date_time);
+            photo.file_name = photoFromDB.file_name;
+            photo.user_id = photoFromDB.user_id;
+            photo.comments = [];
             var comments = photo.comments;
-            comments.forEach(function(comment) {
-                comment.photo_id = photo._id;
-                comment.date_time = formatDateTime(comment.date_time);
+            photoFromDB.comments.forEach(function(commentFromDB) {
+                var comment = {};
+                comments.push(comment);
+                comment._id = commentFromDB._id;
+                comment.date_time = formatDateTime(commentFromDB.date_time);
+                comment.comment = commentFromDB.comment;
                 // Push the User find task into the asyncTasks
                 asyncTasks.push(function(callback) {
-                    User.find({'_id': comment.user_id}, function(err, users) {
+                    User.find({'_id': commentFromDB.user_id}, function(err, users) {
                         if (err) {
                             console.log('Database find() returned error:');
                             console.log(JSON.stringify(err));
                         }
                         else if (users.length === 0) {
-                            console.log('User with _id:' + comment.user_id + ' not found.');
+                            console.log('User with _id:' + commentFromDB.user_id + ' not found.');
                         }
                         else {
-                            comment.user = JSON.parse(JSON.stringify(users[0]));
+                            var userFromDB = JSON.parse(JSON.stringify(users[0]))
+                            var user = {};
+                            user._id = userFromDB._id;
+                            user.first_name = userFromDB.first_name;
+                            user.last_name = userFromDB.last_name;
+                            comment.user = user;
                         }
                         callback();
                     });
